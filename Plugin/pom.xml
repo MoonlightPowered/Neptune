@@ -71,6 +71,13 @@
             <version>2.5</version>
         </dependency>
         <dependency>
+            <groupId>com.moonlightpowered.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>26.2</version>
+            <systemPath>${project.basedir}/libs/selenium-api-26.2.local-SNAPSHOT.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+        <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>[${mc.version}.build,)</version>

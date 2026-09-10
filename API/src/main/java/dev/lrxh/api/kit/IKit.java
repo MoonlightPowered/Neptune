@@ -33,6 +33,7 @@ public interface IKit {
     List<PotionEffect> getPotionEffects();
 
     double getDamageMultiplier();
+    net.kyori.adventure.key.@org.jspecify.annotations.Nullable Key getCombatProfileKey();
 
     HashMap<IKitRule, Boolean> getRule();
 

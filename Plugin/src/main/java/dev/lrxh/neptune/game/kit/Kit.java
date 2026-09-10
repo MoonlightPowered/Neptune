@@ -48,11 +48,20 @@ public class Kit implements IKit, ConfigData {
     private double health;
     private List<PotionEffect> potionEffects;
     private double damageMultiplier;
+    private net.kyori.adventure.key.@org.jspecify.annotations.Nullable Key combatProfileKey; // Selenium
     private int rounds = 1;
 
     public Kit(String name, String displayName, List<ItemStack> items, HashSet<Arena> arenas, ItemStack icon,
                HashMap<KitRule, Boolean> rules, int slot, double health, int kitEditorSlot, int leaderboardSlot,
                List<PotionEffect> potionEffects, double damageMultiplier) {
+        // Selenium start
+        this(name, displayName, items, arenas, icon, rules, slot, health, kitEditorSlot, leaderboardSlot, potionEffects, damageMultiplier, null);
+    }
+    public Kit(String name, String displayName, List<ItemStack> items, HashSet<Arena> arenas, ItemStack icon,
+                HashMap<KitRule, Boolean> rules, int slot, double health, int kitEditorSlot, int leaderboardSlot,
+               List<PotionEffect> potionEffects, double damageMultiplier, net.kyori.adventure.key.@org.jspecify.annotations.Nullable Key combatProfileKey) {
+        this.combatProfileKey = combatProfileKey;
+        // Selenium end
         this.name = name;
         this.displayName = displayName;
         this.items = items;
@@ -126,6 +135,7 @@ public class Kit implements IKit, ConfigData {
         int leaderboardSlot = s.getInt("leaderboard-slot", slot);
         double health = s.getDouble("health", 20);
         double damageMultiplier = s.getDouble("damage-multiplier", 1.0);
+        String combatProfileString = s.getString("combat-profile", null); // Selenium
 
         HashSet<Arena> arenas = new HashSet<>();
         for (String arenaName : s.getStringList("arenas")) {
@@ -151,7 +161,7 @@ public class Kit implements IKit, ConfigData {
         int rounds = clampRounds(s.getInt("rounds", defaultRounds(s.getBoolean("bestOfThree", false))));
 
         Kit kit = new Kit(name, s.getString("displayName", name), items, arenas, icon, rules,
-                slot, health, kitEditorSlot, leaderboardSlot, potionEffects, damageMultiplier);
+                slot, health, kitEditorSlot, leaderboardSlot, potionEffects, damageMultiplier, combatProfileString == null ? null : net.kyori.adventure.key.Key.key(combatProfileString)); // Selenium
         kit.setRounds(rounds);
         return kit;
     }
@@ -228,6 +238,7 @@ public class Kit implements IKit, ConfigData {
         s.set("leaderboard-slot", leaderboardSlot);
         s.set("damage-multiplier", damageMultiplier);
         s.set("rounds", rounds);
+        s.set("combat-profile", this.combatProfileKey == null ? null : this.combatProfileKey.asString()); // Selenium
         s.set("bestOfThree", null);
         for (Map.Entry<KitRule, Boolean> e : rules.entrySet()) {
             s.set(e.getKey().getSaveName(), e.getValue());

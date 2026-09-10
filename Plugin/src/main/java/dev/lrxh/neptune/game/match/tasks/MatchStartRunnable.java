@@ -54,8 +54,10 @@ public class MatchStartRunnable extends NeptuneRunnable {
             checkFollowings();
             match.getTime().setStop(false);
 
+            net.kyori.adventure.key.Key combatProfile = this.match.getKit().getCombatProfileKey(); // Selenium
             for (Participant participant : match.getParticipantsList()) {
                 participant.setTime(new Time());
+                if (combatProfile != null) participant.getPlayer().assignCombatProfileByKey(combatProfile); // Selenium
             }
 
             stop();

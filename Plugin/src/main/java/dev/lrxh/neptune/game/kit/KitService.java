@@ -109,6 +109,7 @@ public class KitService extends IService implements IKitService {
                 kit.getLeaderboardSlot(),
                 kit.getPotionEffects(),
                 kit.getDamageMultiplier()
+                , kit.getCombatProfileKey() // Selenium
         );
     }
 }
