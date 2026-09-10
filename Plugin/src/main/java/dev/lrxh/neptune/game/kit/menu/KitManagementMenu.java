@@ -35,6 +35,7 @@ public class KitManagementMenu extends Menu {
 
         buttons.add(new KitRulesButton(9, kit));
         buttons.add(new KitSetSlotButton(10, kit));
+        buttons.add(new KitSetCombatProfileButton(17, kit)); // Selenium
 
         buttons.add(new KitDeleteButton(21, kit));
         buttons.add(new DisplayButton(22, kit.getIcon(), " "));
