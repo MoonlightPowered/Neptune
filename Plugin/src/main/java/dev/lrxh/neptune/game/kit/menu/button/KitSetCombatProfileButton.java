@@ -25,7 +25,8 @@ public class KitSetCombatProfileButton extends Button {
     @Override
     public void onClick(ClickType type, Player player) {
         player.closeInventory();
-        SignInputMenu.open(player, kit.getDisplayName(), "Enter combat profile key", input -> {
+        Key key = kit.getCombatProfileKey();
+        SignInputMenu.open(player, key == null ? "" : key.asString(), "Enter combat profile key", input -> {
             try {
                 kit.setCombatProfileKey(Key.key(input));
                 player.sendMessage(CC.success("Combat profile assigned"));
@@ -39,7 +40,7 @@ public class KitSetCombatProfileButton extends Button {
 
     @Override
     public ItemStack getItemStack(Player player) {
-        return new ItemBuilder(Material.NAME_TAG)
+        return new ItemBuilder(Material.BOOK)
                 .name("&eAssign combat profile &7(" + kit.getDisplayName() + "&7)")
                 .lore("&7Click to set a combat profile for this kit")
                 .build();
