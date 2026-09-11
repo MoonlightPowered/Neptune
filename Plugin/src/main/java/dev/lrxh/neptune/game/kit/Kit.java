@@ -48,8 +48,8 @@ public class Kit implements IKit, ConfigData {
     private double health;
     private List<PotionEffect> potionEffects;
     private double damageMultiplier;
-    private net.kyori.adventure.key.@org.jspecify.annotations.Nullable Key combatProfileKey; // Selenium
     private int rounds = 1;
+    private net.kyori.adventure.key.@org.jspecify.annotations.Nullable Key combatProfileKey = null; // Selenium
 
     public Kit(String name, String displayName, List<ItemStack> items, HashSet<Arena> arenas, ItemStack icon,
                HashMap<KitRule, Boolean> rules, int slot, double health, int kitEditorSlot, int leaderboardSlot,
