@@ -31,7 +31,7 @@ public class PlayerUtil {
         player.setFallDistance(0.0F);
         player.setFoodLevel(20);
         player.setFireTicks(0);
-        player.assignCombatProfileByKey(Bukkit.getServer().getDefaultCombatProfile().getKey()); // Selenium
+        player.setCombatProfileByKey(Bukkit.getServer().getDefaultCombatProfileKey()); // Selenium
         player.setExp(0.0F);
         player.setLevel(0);
         player.setAllowFlight(false);
