@@ -171,7 +171,7 @@ public class Kit implements IKit, ConfigData {
     }
 
     public static int clampRounds(int r) {
-        return Math.max(1, Math.min(9, r));
+        return Math.clamp(r, 1, 9);
     }
 
     private HashMap<KitRule, Boolean> rules() {
@@ -268,6 +268,9 @@ public class Kit implements IKit, ConfigData {
             playing--;
         }
     }
+    public void removePlaying(int num) {
+        playing = Math.max(0, playing - num);
+    }
 
     @Override
     public HashMap<IKitRule, Boolean> getRule() {
@@ -351,6 +354,9 @@ public class Kit implements IKit, ConfigData {
 
     public void addPlaying() {
         playing++;
+    }
+    public void addPlaying(int num) {
+        playing += num;
     }
 
     public void delete() {
