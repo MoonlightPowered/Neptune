@@ -19,6 +19,7 @@ import dev.lrxh.neptune.feature.cosmetics.command.CosmeticsCommand;
 import dev.lrxh.neptune.feature.customkit.command.CustomKitCommand;
 import dev.lrxh.neptune.feature.customkit.listener.CustomKitListener;
 import dev.lrxh.neptune.feature.divisions.DivisionService;
+import dev.lrxh.neptune.feature.divisions.command.DivisionsCommand;
 import dev.lrxh.neptune.feature.event.command.EventCommand;
 import dev.lrxh.neptune.feature.event.listener.EventListener;
 import dev.lrxh.neptune.feature.event.task.EventScheduleTask;
@@ -139,10 +140,12 @@ public final class Neptune extends JavaPlugin {
 
         ArenaService.get().load();
         if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") != null) {
+            duplicatesEnabled = true;
             Settings.settings().CLIPBOARD.USE_DISK = false;
             ArenaService.get().setupDuplicatesWorld();
             ArenaService.get().loadDuplicates();
         } else {
+            duplicatesEnabled = false;
             ServerUtils.error("FastAsyncWorldEdit is not installed - arena duplicates are disabled.");
         }
         KitService.get().load();
@@ -240,6 +243,7 @@ public final class Neptune extends JavaPlugin {
         drink.register(new SpectateCommand(), "spec", "spectate");
         drink.register(new MainCommand(), "neptune");
         drink.register(new CosmeticsCommand(), "cosmetics");
+        drink.register(new DivisionsCommand(), "divisions", "division");
         drink.register(new MatchHistoryCommand(), "matchhistory").setDefaultCommandIsHelp(true);
         drink.register(new QuickQueueCommand(), "quickqueue");
         drink.register(new CustomKitCommand(), "customkits", "ck");
